@@ -1,14 +1,43 @@
 import React from 'react';
 import './index.css';
 import Square from './Square';
+import calculateWinner from './CalculateWinner';
 
 class Board extends React.Component {
-    renderSquare(i) {
-      return <Square value = {i} />;
-    }
   
+  handleClick(i) {
+    const squares = this.props.squares.slice();
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    squares[i] = this.props.xIsNext? 'X':'O';
+    this.setState({
+      squares: squares,
+      xIsNext: !this.props.xIsNext,
+    });
+  }
+  
+  
+  renderSquare(i) {
+      return (
+        <Square 
+          value = {this.props.squares[i]} 
+          onClick = {() => this.props.onClick(i)}
+        />
+        );  
+    }
+
     render() {
-      const status = 'Next player: X';
+      const winner = calculateWinner(this.props.squares);
+      let status;
+      if (winner) {
+        status = "Winner: " + winner;
+      } else {
+        status = 'Next player: ' + (this.props.xIsNext? 'X' : 'O');
+      }
+    
+
+      
   
       return (
         <div>

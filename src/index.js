@@ -5,6 +5,8 @@ import './index.css';
 // import Square from './Square';
 import Game from './Game';
 
+
 ReactDOM.render(<Game />,
     document.getElementById('root')
   );
+
