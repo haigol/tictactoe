@@ -16,7 +16,7 @@ class Game extends React.Component {
   
   handleClick(i) {
     const history = this.state.history;
-    console.log(history);
+  
     const current = history[history.length -1];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
@@ -45,8 +45,6 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[history.length -1];
     const winningState = calculateWinner(current.squares);
-    
-    console.log(winningState? winningState.winner: 'nope' );
 
     
     //winnerSquares.every((e) => {e.classList.add('highlight')
@@ -57,7 +55,7 @@ class Game extends React.Component {
     // })
 
     let status;
-    if (!winningState.winner.null) {
+    if (winningState) {
       status = "Winner: " + winningState.winner;
     } else if (!current.squares.includes(null)) {
       status = "It's a draw";
@@ -66,16 +64,13 @@ class Game extends React.Component {
     }
   
 
-
-
-
       return (
         <div className="game">
           <div className="game-board">
             <Board 
               squares = {current.squares} 
               onClick = {(i) => this.handleClick(i)}
-              squaresWithBorder = {winningState? winningState.winningSquares: []}
+              squaresWithBorder = {winningState? winningState.winnerSquares: []}
               
             />
           </div>

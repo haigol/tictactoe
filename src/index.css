@@ -37,7 +37,7 @@ ol, ul {
 }
 
 .highlight {
-  outline: 2px dashed blue;
+  border: 2px dashed blue;
 }
 .square:focus {
   outline: none;

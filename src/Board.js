@@ -6,11 +6,11 @@ import Square from './Square';
 class Board extends React.Component {
   
   renderSquare(i) {
-      return (
+    return (
         <Square 
           value = {this.props.squares[i]} 
           onClick = {() => this.props.onClick(i)}
-          hasBorder = {this.props.squaresWithBorder.includes(i)}
+          hasBorder = {this.props.squaresWithBorder && this.props.squaresWithBorder.includes(i)}
         />
         );  
     }
