@@ -35,6 +35,10 @@ ol, ul {
 .square:hover{
   opacity: 1
 }
+
+.highlight {
+  outline: 2px dashed blue;
+}
 .square:focus {
   outline: none;
 }

@@ -16,6 +16,7 @@ class Game extends React.Component {
   
   handleClick(i) {
     const history = this.state.history;
+    console.log(history);
     const current = history[history.length -1];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
@@ -29,20 +30,37 @@ class Game extends React.Component {
     });
   }
   
+  // const moves = history.map((step, move) => {
+  //   const description = move ?
+  //     'Go to move #' + move :
+  //     'Go to game start';
+  //   return (
+  //     <li key={move}>
+  //       <button onClick={() => this.jumpTo(move)}>{description}</button>
+  //     </li>
+  //   );
+  // });
 
   render() {
     const history = this.state.history;
     const current = history[history.length -1];
-    const winner = calculateWinner(current.squares);
+    const winningState = calculateWinner(current.squares);
+    
+    console.log(winningState? winningState.winner: 'nope' );
 
+    
+    //winnerSquares.every((e) => {e.classList.add('highlight')
+    //});
+   
     // const moves = history.map((step,move) => {
     //   const desc;
     // })
 
-
     let status;
-    if (winner) {
-      status = "Winner: " + winner;
+    if (!winningState.winner.null) {
+      status = "Winner: " + winningState.winner;
+    } else if (!current.squares.includes(null)) {
+      status = "It's a draw";
     } else {
       status = 'Next player: ' + (this.state.xIsNext? 'X' : 'O');
     }
@@ -57,6 +75,8 @@ class Game extends React.Component {
             <Board 
               squares = {current.squares} 
               onClick = {(i) => this.handleClick(i)}
+              squaresWithBorder = {winningState? winningState.winningSquares: []}
+              
             />
           </div>
           <div className="game-info">
