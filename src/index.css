@@ -18,7 +18,7 @@ ol, ul {
 }
 
 .square {
-  background: #fff;
+  background: rgb(181, 240, 163);
   border: 1px solid #999;
   float: left;
   font-size: 24px;
@@ -32,6 +32,9 @@ ol, ul {
   width: 40px;
 }
 
+.square:hover{
+  opacity: 1
+}
 .square:focus {
   outline: none;
 }
